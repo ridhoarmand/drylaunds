@@ -8,6 +8,8 @@ import java.sql.SQLException;
 
 import static connection.DB.eQuery;
 import static helper.HelperData.fillTable;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 /**
  *
@@ -18,19 +20,27 @@ public class SearchTool extends javax.swing.JFrame {
     /**
      * Creates new form SearchTool
      */
-    public String sql;
+    private String sql, columnFilter, data;
+    private int column;
 
     public SearchTool() {
         initComponents();
         tableData.setDefaultEditor(Object.class, null);
         tableData.setRowSelectionAllowed(true);
+
+        txtSearch.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyReleased(KeyEvent e) {
+                showData(generateSQL());
+            }
+        });
     }
 
     private void showData(String sql) {
         try {
             if (sql != null) {
                 fillTable(tableData, eQuery(sql));
-            }
+                }
         } catch (SQLException e) {
             throw new IllegalArgumentException("Error showing data!", e);
         }
@@ -38,13 +48,46 @@ public class SearchTool extends javax.swing.JFrame {
 
     public void setSql(String sql) {
         this.sql = sql;
-        showData(sql);
     }
 
-    public String getSelectedData(int column) {
-        // get data from selected row and column in table
-        return tableData.getValueAt(tableData.getSelectedRow(), column).toString();
+    public void setSql(String sql, String columnFilter) {
+        this.sql = sql;
+        this.columnFilter = columnFilter;
     }
+
+    private String generateSQL() {
+        String newSql = sql;
+        if (columnFilter != null) {
+            newSql += " WHERE " + columnFilter + " LIKE '%" + txtSearch.getText() + "%'";
+        }
+        return newSql;
+    }
+
+    public void setColumn(int column) {
+        this.column = column;
+    }
+
+    private void setData(String data) {
+        this.data = data;
+    }
+
+    public String getData() {
+        return data;
+    }
+
+    public void writeData(int column) {
+        try {
+            int row = tableData.getSelectedRow();
+            String data = tableData.getValueAt(row, column).toString();
+            if (!data.isEmpty()) {
+                setData(data);
+                this.dispose();
+            }
+        } catch (Exception e) {
+            throw new IllegalArgumentException("Error getting data!", e);
+        }
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -55,50 +98,14 @@ public class SearchTool extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
+        txtSearch = new Palette.Custom_JTextFieldRounded();
         jScrollPane1 = new javax.swing.JScrollPane();
         tableData = new Palette.Custom_JTabel();
-        txtSearch = new Palette.Custom_JTextFieldRounded();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
-
-        tableData.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {},
-                {},
-                {},
-                {},
-                {},
-                {},
-                {},
-                {},
-                {},
-                {},
-                {},
-                {},
-                {},
-                {},
-                {},
-                {},
-                {},
-                {},
-                {},
-                {},
-                {}
-            },
-            new String [] {
-
-            }
-        ));
-        tableData.setCellSelectionEnabled(true);
-        tableData.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tableDataMouseClicked(evt);
-            }
-        });
-        jScrollPane1.setViewportView(tableData);
 
         txtSearch.setBackground(new java.awt.Color(255, 153, 51));
         txtSearch.setForeground(new java.awt.Color(255, 255, 255));
@@ -111,6 +118,41 @@ public class SearchTool extends javax.swing.JFrame {
             }
         });
 
+        tableData.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        tableData.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tableDataMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(tableData);
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -118,10 +160,10 @@ public class SearchTool extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 615, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 825, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -129,8 +171,8 @@ public class SearchTool extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(16, 16, 16)
                 .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 371, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 432, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -151,13 +193,11 @@ public class SearchTool extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSearchActionPerformed
-        // TODO add your handling code here:
+        showData(generateSQL());
     }//GEN-LAST:event_txtSearchActionPerformed
 
     private void tableDataMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableDataMouseClicked
-        if (evt.getClickCount() == 2) {
-            System.out.println(getSelectedData(2));
-        }
+        writeData(column);
     }//GEN-LAST:event_tableDataMouseClicked
 
     /**

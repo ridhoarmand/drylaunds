@@ -227,8 +227,6 @@ public class FrLogin extends javax.swing.JFrame {
         boolean isLogin = sysLogin.verifyLogin(username, password);
 
         if (isLogin) {
-            FrMenu.isLogin = true;
-            FrMenu.checkLogin();
             showMessageDialog(null, "Login successful");
             new FrMenu().show();
             this.dispose();

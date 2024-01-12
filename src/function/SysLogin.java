@@ -5,6 +5,8 @@
 package function;
 
 import connection.DB;
+import design.FrMenu;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -18,6 +20,8 @@ public class SysLogin {
         try {
             ResultSet result = DB.eQuery(sql, username, password);
             result.next();
+            FrMenu.setIdUser(String.valueOf(result.getInt("id")));
+            FrMenu.setNamaUser(result.getString("nama"));
             return result.getRow() == 1;
         } catch (SQLException e) {
             System.out.println(e.getMessage());

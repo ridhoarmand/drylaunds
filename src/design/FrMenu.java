@@ -17,27 +17,24 @@ import java.awt.event.MouseEvent;
  * @author Armandho
  */
 public class FrMenu extends javax.swing.JFrame {
-
-    static boolean isLogin;
-
-    static void checkLogin() {
-        if (isLogin) {
-//            menuItemPetugas.setEnabled(true);
-//            logOut.setEnabled(true);
-//            closeLoginForm();
-        } else {
-//            menuItemPetugas.setEnabled(false);
-//            logOut.setEnabled(false);
-//            openLoginForm();
-        }
-    }
-
     
     /**
      * Creates new form MainMenu
      */
+
+    private static String id_user;
+    private static String nama_user;
+
     public FrMenu() {
         initComponents();
+    }
+
+    public static void setIdUser(String id_user) {
+        FrMenu.id_user = id_user;
+    }
+
+    public static void setNamaUser(String nama_user) {
+        FrMenu.nama_user = nama_user;
     }
 
     /**
@@ -429,6 +426,8 @@ public class FrMenu extends javax.swing.JFrame {
         pn_utama.setBackground(Color.white);
         pn_utama.repaint();
         pn_utama.revalidate();
+        
+        
     }//GEN-LAST:event_btOrdersInfoMouseClicked
 
     private void btMembershipMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btMembershipMouseEntered

@@ -7,6 +7,11 @@ package design.view;
 import helper.HelperData;
 import helper.SearchTool;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+import static connection.DB.eQuery;
+
 /**
  *
  * @author novar
@@ -18,20 +23,24 @@ public class MasterAddOrders extends javax.swing.JPanel {
      */
     public MasterAddOrders() {
         initComponents();
-        getNewID();
         getPanelPayment();
         txtMemberId.grabFocus();
+        getNewID();
     }
-    
+
     private void getNewID() {
-        txtOrderId.setText(HelperData.getNewCode("O","id", "orders", 5));
+        txtOrderId.setText(HelperData.getNewCode("O", "id", "orders", 5));
     }
-    
+
     private void getPanelPayment() {
         pn_payment.removeAll();
         pn_payment.add(new Payment());
         pn_payment.repaint();
         pn_payment.revalidate();
+    }
+
+    public void setTxtMemberId(String txtMemberId) {
+        this.txtMemberId.setText(txtMemberId);
     }
 
     /**
@@ -67,7 +76,7 @@ public class MasterAddOrders extends javax.swing.JPanel {
         txtPrice = new Palette.Custom_JTextFieldRounded();
         txtSubtotal = new Palette.Custom_JTextFieldRounded();
         jLabel17 = new javax.swing.JLabel();
-        custom_ButtonRounded2 = new Palette.Custom_ButtonRounded();
+        addDetail = new Palette.Custom_ButtonRounded();
         jLabel18 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tabel = new Palette.Custom_JTabel();
@@ -106,14 +115,14 @@ public class MasterAddOrders extends javax.swing.JPanel {
 
         txtAdmin.setBackground(new java.awt.Color(0, 102, 255));
         txtAdmin.setOpaque(true);
-        txtAdmin.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtAdminActionPerformed(evt);
-            }
-        });
 
         txtMemberId.setBackground(new java.awt.Color(0, 102, 255));
         txtMemberId.setOpaque(true);
+        txtMemberId.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                txtMemberIdMouseExited(evt);
+            }
+        });
         txtMemberId.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txtMemberIdKeyPressed(evt);
@@ -122,19 +131,9 @@ public class MasterAddOrders extends javax.swing.JPanel {
 
         txtOrderer.setBackground(new java.awt.Color(0, 102, 255));
         txtOrderer.setOpaque(true);
-        txtOrderer.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtOrdererActionPerformed(evt);
-            }
-        });
 
         txtMemberName.setBackground(new java.awt.Color(0, 102, 255));
         txtMemberName.setOpaque(true);
-        txtMemberName.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtMemberNameActionPerformed(evt);
-            }
-        });
 
         jLabel5.setBackground(new java.awt.Color(0, 0, 0));
         jLabel5.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
@@ -161,11 +160,6 @@ public class MasterAddOrders extends javax.swing.JPanel {
         custom_JTextFieldRounded7.setBackground(new java.awt.Color(0, 102, 255));
         custom_JTextFieldRounded7.setEnabled(false);
         custom_JTextFieldRounded7.setOpaque(true);
-        custom_JTextFieldRounded7.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                custom_JTextFieldRounded7ActionPerformed(evt);
-            }
-        });
 
         txtServiceId.setBackground(new java.awt.Color(0, 102, 255));
         txtServiceId.setOpaque(true);
@@ -187,33 +181,18 @@ public class MasterAddOrders extends javax.swing.JPanel {
 
         txtPrice.setBackground(new java.awt.Color(0, 102, 255));
         txtPrice.setOpaque(true);
-        txtPrice.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtPriceActionPerformed(evt);
-            }
-        });
 
         txtSubtotal.setBackground(new java.awt.Color(0, 102, 255));
         txtSubtotal.setOpaque(true);
-        txtSubtotal.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtSubtotalActionPerformed(evt);
-            }
-        });
 
         jLabel17.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
         jLabel17.setForeground(new java.awt.Color(0, 0, 0));
         jLabel17.setText("Price");
 
-        custom_ButtonRounded2.setBackground(new java.awt.Color(0, 102, 255));
-        custom_ButtonRounded2.setText("Add");
-        custom_ButtonRounded2.setFillOriginal(new java.awt.Color(255, 153, 0));
-        custom_ButtonRounded2.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
-        custom_ButtonRounded2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                custom_ButtonRounded2ActionPerformed(evt);
-            }
-        });
+        addDetail.setBackground(new java.awt.Color(0, 102, 255));
+        addDetail.setText("Add");
+        addDetail.setFillOriginal(new java.awt.Color(255, 153, 0));
+        addDetail.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
 
         jLabel18.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
         jLabel18.setForeground(new java.awt.Color(0, 0, 0));
@@ -258,14 +237,11 @@ public class MasterAddOrders extends javax.swing.JPanel {
 
         txtNameService.setBackground(new java.awt.Color(0, 102, 255));
         txtNameService.setOpaque(true);
-        txtNameService.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtNameServiceActionPerformed(evt);
-            }
-        });
 
         txtDate.setBackground(new java.awt.Color(0, 102, 255));
         txtDate.setForeground(new java.awt.Color(0, 102, 255));
+        txtDate.setDateFormatString("yyyy/MM/dd");
+        txtDate.setEnabled(false);
 
         javax.swing.GroupLayout pn_utamaLayout = new javax.swing.GroupLayout(pn_utama);
         pn_utama.setLayout(pn_utamaLayout);
@@ -311,7 +287,7 @@ public class MasterAddOrders extends javax.swing.JPanel {
                         .addGroup(pn_utamaLayout.createSequentialGroup()
                             .addComponent(txtNameService, javax.swing.GroupLayout.PREFERRED_SIZE, 267, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(custom_ButtonRounded2, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(addDetail, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(pn_utamaLayout.createSequentialGroup()
                             .addGroup(pn_utamaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                 .addComponent(txtOrderId, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -386,7 +362,7 @@ public class MasterAddOrders extends javax.swing.JPanel {
                                     .addComponent(txtSubtotal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(pn_utamaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(custom_ButtonRounded2, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(addDetail, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtNameService, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 306, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -406,55 +382,55 @@ public class MasterAddOrders extends javax.swing.JPanel {
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
-        
-    private void custom_ButtonRounded2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_custom_ButtonRounded2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_custom_ButtonRounded2ActionPerformed
 
-    private void txtSubtotalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSubtotalActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtSubtotalActionPerformed
+    private void txtMemberIdMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtMemberIdMouseExited
+        // jika id member tidak kosong, set nama member
 
-    private void txtPriceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPriceActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtPriceActionPerformed
 
-    private void custom_JTextFieldRounded7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_custom_JTextFieldRounded7ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_custom_JTextFieldRounded7ActionPerformed
+    }//GEN-LAST:event_txtMemberIdMouseExited
 
-    private void txtMemberNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMemberNameActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtMemberNameActionPerformed
-
-    private void txtAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtAdminActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtAdminActionPerformed
-
-    private void txtOrdererActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtOrdererActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtOrdererActionPerformed
-
-    private void txtNameServiceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNameServiceActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtNameServiceActionPerformed
-
-    private void txtMemberIdKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtMemberIdKeyPressed
+    private void txtMemberIdKeyPressed(java.awt.event.KeyEvent evt) {
         if (evt.getKeyCode() == 9 || evt.getKeyCode() == 10) {
             if (txtMemberId.getText().equals("")) {
-                SearchTool search = new SearchTool();
-                search.setSql("SELECT * FROM members");
-                search.setTitle("Search Member");
-                search.setVisible(true);
+                openSearchTool();
             } else {
                 txtDate.grabFocus();
             }
         }
-    }//GEN-LAST:event_txtMemberIdKeyPressed
+    }
+
+    private void openSearchTool() {
+        SearchTool search = new SearchTool();
+        search.setSql("SELECT * FROM members", "name");
+        search.setColumn(0);
+        search.setTitle("Search Member");
+        search.setVisible(true);
+        search.addWindowListener(new java.awt.event.WindowAdapter() {
+            @Override
+            public void windowClosed(java.awt.event.WindowEvent windowEvent) {
+                String data = search.getData();
+                if (data != null) {
+                    txtMemberId.setText(data);
+                    String sql = "SELECT * FROM members WHERE id = ?";
+                    try {
+                        ResultSet rs = eQuery(sql, txtMemberId.getText());
+                        if (rs.next()) {
+                            txtMemberName.setText(rs.getString("name"));
+                        } else {
+                            txtMemberName.setText("");
+                        }
+                    } catch (SQLException e) {
+                        System.out.println(e.getMessage());
+                    }
+
+                }
+            }
+        });
+    }
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private Palette.Custom_ButtonRounded custom_ButtonRounded2;
+    private Palette.Custom_ButtonRounded addDetail;
     private Palette.Custom_JTabel custom_JTabel2;
     private Palette.Custom_JTextFieldRounded custom_JTextFieldRounded7;
     private javax.swing.JLabel jLabel1;
