@@ -5,7 +5,7 @@
 package function;
 
 import connection.DB;
-import helper.Helper;
+import helper.HelperData;
 
 import java.sql.SQLException;
 
@@ -15,7 +15,7 @@ import java.sql.SQLException;
  */
 public class SysRegister {
     public boolean verifyRegister(String username, String password, String name)  {
-        String id = Helper.getNewCode("U","id", "users", 5);
+        String id = HelperData.getNewCode("U","id", "users", 5);
         String sql = "INSERT INTO users (id, username, password, name) VALUES (?, ?, ?, ?)";
         try {
             int i = DB.eUpdate(sql, id, username, password, name);

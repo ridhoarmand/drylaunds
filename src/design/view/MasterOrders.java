@@ -6,7 +6,7 @@ package design.view;
 
 
 import static connection.DB.eQuery;
-import static helper.Helper.fillTable;
+import static helper.HelperData.fillTable;
 
 /**
  *

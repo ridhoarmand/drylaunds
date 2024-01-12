@@ -4,7 +4,9 @@
  */
 package design;
 
+import design.view.MasterAddOrders;
 import design.view.MasterDashboard;
+import design.view.MasterMembership;
 import design.view.MasterOrders;
 
 import java.awt.Color;
@@ -53,18 +55,18 @@ public class FrMenu extends javax.swing.JFrame {
         pn_linedashboard = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         btdashboard = new javax.swing.JLabel();
-        pn_Clients = new javax.swing.JPanel();
-        pn_lineclient = new javax.swing.JPanel();
-        jLabel5 = new javax.swing.JLabel();
-        btCllient = new javax.swing.JLabel();
         pn_Orders = new javax.swing.JPanel();
         pn_lineorders = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
         btOrders = new javax.swing.JLabel();
-        pn_Finance = new javax.swing.JPanel();
-        pn_linefinance = new javax.swing.JPanel();
+        pn_OrdersInfo = new javax.swing.JPanel();
+        pn_lineordersinfo = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
-        btFinance = new javax.swing.JLabel();
+        btOrdersInfo = new javax.swing.JLabel();
+        pn_Membership = new javax.swing.JPanel();
+        pn_lineMembership = new javax.swing.JPanel();
+        jLabel8 = new javax.swing.JLabel();
+        btMembership = new javax.swing.JLabel();
         pn_kanan = new javax.swing.JPanel();
         pn_atas = new javax.swing.JPanel();
         pn_utama = new javax.swing.JPanel();
@@ -79,11 +81,6 @@ public class FrMenu extends javax.swing.JFrame {
         jLabel1.setText("DryLaund's");
 
         pn_dashboard.setBackground(new java.awt.Color(0, 102, 255));
-        pn_dashboard.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                pn_dashboardMouseEntered(evt);
-            }
-        });
 
         pn_linedashboard.setBackground(new java.awt.Color(0, 102, 255));
 
@@ -98,7 +95,7 @@ public class FrMenu extends javax.swing.JFrame {
             .addGap(0, 0, Short.MAX_VALUE)
         );
 
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/design/assets/icons8_dashboard_30px.png"))); // NOI18N
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/design/assets/icons8_compass_30px.png"))); // NOI18N
 
         btdashboard.setBackground(new java.awt.Color(102, 102, 102));
         btdashboard.setFont(new java.awt.Font("Poppins", 0, 14)); // NOI18N
@@ -124,90 +121,23 @@ public class FrMenu extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(pn_linedashboard, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel4)
+                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btdashboard, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(100, Short.MAX_VALUE))
+                .addComponent(btdashboard, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         pn_dashboardLayout.setVerticalGroup(
             pn_dashboardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pn_dashboardLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(pn_dashboardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 43, Short.MAX_VALUE)
                     .addComponent(pn_linedashboard, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btdashboard, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
-        pn_Clients.setBackground(new java.awt.Color(0, 102, 255));
-        pn_Clients.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                pn_ClientsMouseEntered(evt);
-            }
-        });
-
-        pn_lineclient.setBackground(new java.awt.Color(0, 102, 255));
-
-        javax.swing.GroupLayout pn_lineclientLayout = new javax.swing.GroupLayout(pn_lineclient);
-        pn_lineclient.setLayout(pn_lineclientLayout);
-        pn_lineclientLayout.setHorizontalGroup(
-            pn_lineclientLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 15, Short.MAX_VALUE)
-        );
-        pn_lineclientLayout.setVerticalGroup(
-            pn_lineclientLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
-
-        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/design/assets/icons8_user_male_circle_30px.png"))); // NOI18N
-
-        btCllient.setBackground(new java.awt.Color(102, 102, 102));
-        btCllient.setFont(new java.awt.Font("Poppins", 0, 14)); // NOI18N
-        btCllient.setForeground(new java.awt.Color(255, 255, 255));
-        btCllient.setText("Clients");
-        btCllient.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btCllientMouseClicked(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btCllientMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                btCllientMouseExited(evt);
-            }
-        });
-
-        javax.swing.GroupLayout pn_ClientsLayout = new javax.swing.GroupLayout(pn_Clients);
-        pn_Clients.setLayout(pn_ClientsLayout);
-        pn_ClientsLayout.setHorizontalGroup(
-            pn_ClientsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pn_ClientsLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(pn_lineclient, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel5)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btCllient, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        pn_ClientsLayout.setVerticalGroup(
-            pn_ClientsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pn_ClientsLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(pn_ClientsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, 42, Short.MAX_VALUE)
-                    .addComponent(pn_lineclient, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btCllient, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
-        );
-
         pn_Orders.setBackground(new java.awt.Color(0, 102, 255));
-        pn_Orders.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                pn_OrdersMouseEntered(evt);
-            }
-        });
 
         pn_lineorders.setBackground(new java.awt.Color(0, 102, 255));
 
@@ -222,12 +152,17 @@ public class FrMenu extends javax.swing.JFrame {
             .addGap(0, 0, Short.MAX_VALUE)
         );
 
-        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/design/assets/icons8_purchase_order_30px.png"))); // NOI18N
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/design/assets/icons8_add_rule_30px.png"))); // NOI18N
+        jLabel6.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel6MouseClicked(evt);
+            }
+        });
 
         btOrders.setBackground(new java.awt.Color(102, 102, 102));
         btOrders.setFont(new java.awt.Font("Poppins", 0, 14)); // NOI18N
         btOrders.setForeground(new java.awt.Color(255, 255, 255));
-        btOrders.setText("Orders");
+        btOrders.setText("Add Orders");
         btOrders.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btOrdersMouseClicked(evt);
@@ -248,78 +183,130 @@ public class FrMenu extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(pn_lineorders, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel6)
+                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btOrders, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(100, Short.MAX_VALUE))
+                .addComponent(btOrders, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         pn_OrdersLayout.setVerticalGroup(
             pn_OrdersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pn_OrdersLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(pn_OrdersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, 42, Short.MAX_VALUE)
+                    .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, 48, Short.MAX_VALUE)
                     .addComponent(pn_lineorders, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btOrders, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
-        pn_Finance.setBackground(new java.awt.Color(0, 102, 255));
-        pn_Finance.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                pn_FinanceMouseEntered(evt);
+        pn_OrdersInfo.setBackground(new java.awt.Color(0, 102, 255));
+
+        pn_lineordersinfo.setBackground(new java.awt.Color(0, 102, 255));
+
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/design/assets/icons8_purchase_order_30px_2.png"))); // NOI18N
+
+        btOrdersInfo.setBackground(new java.awt.Color(102, 102, 102));
+        btOrdersInfo.setFont(new java.awt.Font("Poppins", 0, 14)); // NOI18N
+        btOrdersInfo.setForeground(new java.awt.Color(255, 255, 255));
+        btOrdersInfo.setText("Orders Info");
+        btOrdersInfo.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btOrdersInfoMouseClicked(evt);
             }
-        });
-
-        pn_linefinance.setBackground(new java.awt.Color(0, 102, 255));
-
-        javax.swing.GroupLayout pn_linefinanceLayout = new javax.swing.GroupLayout(pn_linefinance);
-        pn_linefinance.setLayout(pn_linefinanceLayout);
-        pn_linefinanceLayout.setHorizontalGroup(
-            pn_linefinanceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 15, Short.MAX_VALUE)
-        );
-        pn_linefinanceLayout.setVerticalGroup(
-            pn_linefinanceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
-
-        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/design/assets/icons8_finance_document__30px.png"))); // NOI18N
-
-        btFinance.setBackground(new java.awt.Color(102, 102, 102));
-        btFinance.setFont(new java.awt.Font("Poppins", 0, 14)); // NOI18N
-        btFinance.setForeground(new java.awt.Color(255, 255, 255));
-        btFinance.setText("Finance");
-        btFinance.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btFinanceMouseEntered(evt);
+                btOrdersInfoMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                btFinanceMouseExited(evt);
+                btOrdersInfoMouseExited(evt);
             }
         });
 
-        javax.swing.GroupLayout pn_FinanceLayout = new javax.swing.GroupLayout(pn_Finance);
-        pn_Finance.setLayout(pn_FinanceLayout);
-        pn_FinanceLayout.setHorizontalGroup(
-            pn_FinanceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pn_FinanceLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(pn_linefinance, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+        javax.swing.GroupLayout pn_lineordersinfoLayout = new javax.swing.GroupLayout(pn_lineordersinfo);
+        pn_lineordersinfo.setLayout(pn_lineordersinfoLayout);
+        pn_lineordersinfoLayout.setHorizontalGroup(
+            pn_lineordersinfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pn_lineordersinfoLayout.createSequentialGroup()
+                .addContainerGap(20, Short.MAX_VALUE)
                 .addComponent(jLabel7)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btFinance, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btOrdersInfo, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+        pn_lineordersinfoLayout.setVerticalGroup(
+            pn_lineordersinfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, 48, Short.MAX_VALUE)
+            .addComponent(btOrdersInfo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+
+        javax.swing.GroupLayout pn_OrdersInfoLayout = new javax.swing.GroupLayout(pn_OrdersInfo);
+        pn_OrdersInfo.setLayout(pn_OrdersInfoLayout);
+        pn_OrdersInfoLayout.setHorizontalGroup(
+            pn_OrdersInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pn_OrdersInfoLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(pn_lineordersinfo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        pn_FinanceLayout.setVerticalGroup(
-            pn_FinanceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pn_FinanceLayout.createSequentialGroup()
+        pn_OrdersInfoLayout.setVerticalGroup(
+            pn_OrdersInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pn_OrdersInfoLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(pn_FinanceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(pn_linefinance, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btFinance, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(pn_lineordersinfo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        pn_Membership.setBackground(new java.awt.Color(0, 102, 255));
+
+        pn_lineMembership.setBackground(new java.awt.Color(0, 102, 255));
+
+        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/design/assets/icons8_membership_card_filled_30px_1.png"))); // NOI18N
+
+        btMembership.setBackground(new java.awt.Color(102, 102, 102));
+        btMembership.setFont(new java.awt.Font("Poppins", 0, 14)); // NOI18N
+        btMembership.setForeground(new java.awt.Color(255, 255, 255));
+        btMembership.setText("Membership");
+        btMembership.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btMembershipMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btMembershipMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btMembershipMouseExited(evt);
+            }
+        });
+
+        javax.swing.GroupLayout pn_lineMembershipLayout = new javax.swing.GroupLayout(pn_lineMembership);
+        pn_lineMembership.setLayout(pn_lineMembershipLayout);
+        pn_lineMembershipLayout.setHorizontalGroup(
+            pn_lineMembershipLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pn_lineMembershipLayout.createSequentialGroup()
+                .addContainerGap(23, Short.MAX_VALUE)
+                .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btMembership, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+        pn_lineMembershipLayout.setVerticalGroup(
+            pn_lineMembershipLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, 45, Short.MAX_VALUE)
+            .addComponent(btMembership, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+
+        javax.swing.GroupLayout pn_MembershipLayout = new javax.swing.GroupLayout(pn_Membership);
+        pn_Membership.setLayout(pn_MembershipLayout);
+        pn_MembershipLayout.setHorizontalGroup(
+            pn_MembershipLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pn_MembershipLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(pn_lineMembership, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        pn_MembershipLayout.setVerticalGroup(
+            pn_MembershipLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pn_MembershipLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(pn_lineMembership, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -328,16 +315,16 @@ public class FrMenu extends javax.swing.JFrame {
         pn_kiriLayout.setHorizontalGroup(
             pn_kiriLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pn_kiriLayout.createSequentialGroup()
-                .addGroup(pn_kiriLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(pn_dashboard, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(pn_Clients, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(0, 0, Short.MAX_VALUE))
-            .addComponent(pn_Orders, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(pn_kiriLayout.createSequentialGroup()
                 .addGap(34, 34, 34)
                 .addComponent(jLabel1)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addComponent(pn_Finance, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(pn_kiriLayout.createSequentialGroup()
+                .addGroup(pn_kiriLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(pn_Membership, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(pn_OrdersInfo, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(pn_Orders, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(pn_dashboard, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         pn_kiriLayout.setVerticalGroup(
             pn_kiriLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -346,13 +333,13 @@ public class FrMenu extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addGap(29, 29, 29)
                 .addComponent(pn_dashboard, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
-                .addComponent(pn_Clients, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(pn_Orders, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
-                .addComponent(pn_Finance, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(470, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(pn_OrdersInfo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(pn_Membership, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(412, Short.MAX_VALUE))
         );
 
         getContentPane().add(pn_kiri, java.awt.BorderLayout.LINE_START);
@@ -385,96 +372,16 @@ public class FrMenu extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    // show dashboard di panel utama
-    private void showDashboard() {
-//        Dashboard dashboard = new Dashboard();
-//        pn_utama.removeAll();
-//        pn_utama.add(dashboard);
-//        pn_utama.repaint();
-//        pn_utama.revalidate();
-    }
 
     private void btdashboardMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btdashboardMouseEntered
-        // Untuk mengubah warna pn_dashboard menjadi orange
         pn_dashboard.setBackground(new Color(255, 165, 0)); // Warna orange
-
-        // Untuk mengubah warna pn_line menjadi putih
-        pn_linedashboard.setBackground(Color.WHITE);
-
+        pn_linedashboard.setBackground(new Color(255, 165, 0));
     }//GEN-LAST:event_btdashboardMouseEntered
 
-    private void pn_dashboardMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pn_dashboardMouseEntered
-        showDashboard();
-    }//GEN-LAST:event_pn_dashboardMouseEntered
-
     private void btdashboardMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btdashboardMouseExited
-        // Mengubah warna pn_dashboard menjadi biru (0, 102, 255)
-        pn_dashboard.setBackground(new Color(0, 102, 255));
-
-        // Mengubah warna pn_line menjadi biru (0, 102, 255)
+        pn_dashboard.setBackground(new Color(0, 102, 255)); // Warna biru
         pn_linedashboard.setBackground(new Color(0, 102, 255));
-
     }//GEN-LAST:event_btdashboardMouseExited
-
-    private void btCllientMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btCllientMouseEntered
-        // Untuk mengubah warna pn_dashboard menjadi orange
-        pn_Clients.setBackground(new Color(255, 165, 0)); // Warna orange
-
-        // Untuk mengubah warna pn_line menjadi putih
-        pn_lineclient.setBackground(Color.WHITE);
-    }//GEN-LAST:event_btCllientMouseEntered
-
-    private void btCllientMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btCllientMouseExited
-        // Mengubah warna pn_dashboard menjadi biru (0, 102, 255)
-        pn_Clients.setBackground(new Color(0, 102, 255));
-
-        // Mengubah warna pn_line menjadi biru (0, 102, 255)
-        pn_lineclient.setBackground(new Color(0, 102, 255));
-    }//GEN-LAST:event_btCllientMouseExited
-
-    private void pn_ClientsMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pn_ClientsMouseEntered
-        // TODO add your handling code here:
-    }//GEN-LAST:event_pn_ClientsMouseEntered
-
-    private void btOrdersMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btOrdersMouseEntered
-        // Untuk mengubah warna pn_dashboard menjadi orange
-        pn_Orders.setBackground(new Color(255, 165, 0)); // Warna orange
-
-        // Untuk mengubah warna pn_line menjadi putih
-        pn_lineorders.setBackground(Color.WHITE);
-    }//GEN-LAST:event_btOrdersMouseEntered
-
-    private void btOrdersMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btOrdersMouseExited
-        // Mengubah warna pn_dashboard menjadi biru (0, 102, 255)
-        pn_Orders.setBackground(new Color(0, 102, 255));
-
-        // Mengubah warna pn_line menjadi biru (0, 102, 255)
-        pn_lineorders.setBackground(new Color(0, 102, 255));
-    }//GEN-LAST:event_btOrdersMouseExited
-
-    private void pn_OrdersMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pn_OrdersMouseEntered
-        // TODO add your handling code here:
-    }//GEN-LAST:event_pn_OrdersMouseEntered
-
-    private void btFinanceMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btFinanceMouseEntered
-        // Untuk mengubah warna pn_dashboard menjadi orange
-        pn_Finance.setBackground(new Color(255, 165, 0)); // Warna orange
-
-        // Untuk mengubah warna pn_line menjadi putih
-        pn_linefinance.setBackground(Color.WHITE);
-    }//GEN-LAST:event_btFinanceMouseEntered
-
-    private void btFinanceMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btFinanceMouseExited
-        // Mengubah warna pn_dashboard menjadi biru (0, 102, 255)
-        pn_Finance.setBackground(new Color(0, 102, 255));
-
-        // Mengubah warna pn_line menjadi biru (0, 102, 255)
-        pn_linefinance.setBackground(new Color(0, 102, 255));
-    }//GEN-LAST:event_btFinanceMouseExited
-
-    private void pn_FinanceMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pn_FinanceMouseEntered
-        // TODO add your handling code here:
-    }//GEN-LAST:event_pn_FinanceMouseEntered
 
     private void btdashboardMouseClicked(MouseEvent evt) {//GEN-FIRST:event_btdashboardMouseClicked
         pn_utama.setVisible(true);
@@ -486,23 +393,74 @@ public class FrMenu extends javax.swing.JFrame {
 
     }//GEN-LAST:event_btdashboardMouseClicked
 
-    private void btCllientMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btCllientMouseClicked
+    private void btOrdersMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btOrdersMouseExited
+        pn_Orders.setBackground(new Color(0, 102, 255));
+        pn_lineorders.setBackground(new Color(0, 102, 255));
+    }//GEN-LAST:event_btOrdersMouseExited
+
+    private void btOrdersMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btOrdersMouseEntered
+        pn_Orders.setBackground(new Color(255, 165, 0)); // Warna orange
+        pn_lineorders.setBackground(new Color(255, 165, 0));
+    }//GEN-LAST:event_btOrdersMouseEntered
+
+    private void btOrdersMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btOrdersMouseClicked
         pn_utama.setVisible(true);
         pn_utama.removeAll();
-        pn_utama.add(new MasterDashboard());
+        pn_utama.add(new MasterAddOrders());
         pn_utama.setBackground(Color.white);
         pn_utama.repaint();
         pn_utama.revalidate();
-    }//GEN-LAST:event_btCllientMouseClicked
+    }//GEN-LAST:event_btOrdersMouseClicked
 
-    private void btOrdersMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btOrdersMouseClicked
+    private void btOrdersInfoMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btOrdersInfoMouseEntered
+        pn_OrdersInfo.setBackground(new Color(255, 165, 0)); // Warna orange
+        pn_lineordersinfo.setBackground(new Color(255, 165, 0));
+    }//GEN-LAST:event_btOrdersInfoMouseEntered
+
+    private void btOrdersInfoMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btOrdersInfoMouseExited
+        pn_OrdersInfo.setBackground(new Color(0, 102, 255));
+        pn_lineordersinfo.setBackground(new Color(0, 102, 255));
+    }//GEN-LAST:event_btOrdersInfoMouseExited
+
+    private void btOrdersInfoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btOrdersInfoMouseClicked
         pn_utama.setVisible(true);
         pn_utama.removeAll();
         pn_utama.add(new MasterOrders());
         pn_utama.setBackground(Color.white);
         pn_utama.repaint();
         pn_utama.revalidate();
-    }//GEN-LAST:event_btOrdersMouseClicked
+    }//GEN-LAST:event_btOrdersInfoMouseClicked
+
+    private void btMembershipMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btMembershipMouseEntered
+        pn_Membership.setBackground(new Color(255, 165, 0)); // Warna orange
+        pn_lineMembership.setBackground(new Color(255, 165, 0));
+    }//GEN-LAST:event_btMembershipMouseEntered
+
+    private void btMembershipMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btMembershipMouseExited
+        pn_Membership.setBackground(new Color(0, 102, 255));
+        pn_lineMembership.setBackground(new Color(0, 102, 255));
+    }//GEN-LAST:event_btMembershipMouseExited
+    private void btMembershipMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btMembershipMouseClicked
+        pn_utama.setVisible(true);
+        pn_utama.removeAll();
+        pn_utama.add(new MasterMembership());
+        pn_utama.setBackground(Color.white);
+        pn_utama.repaint();
+        pn_utama.revalidate();
+    }//GEN-LAST:event_btMembershipMouseClicked
+
+    private void jLabel6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel6MouseClicked
+        pn_utama.setVisible(true);
+        pn_utama.removeAll();
+        pn_utama.add(new MasterAddOrders());
+        pn_utama.setBackground(Color.white);
+        pn_utama.repaint();
+        pn_utama.revalidate();
+    }//GEN-LAST:event_jLabel6MouseClicked
+
+
+
+
 
     /**
      * @param args the command line arguments
@@ -543,26 +501,26 @@ public class FrMenu extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel btCllient;
-    private javax.swing.JLabel btFinance;
+    private javax.swing.JLabel btMembership;
     private javax.swing.JLabel btOrders;
+    private javax.swing.JLabel btOrdersInfo;
     private javax.swing.JLabel btdashboard;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JPanel pn_Clients;
-    private javax.swing.JPanel pn_Finance;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JPanel pn_Membership;
     private javax.swing.JPanel pn_Orders;
+    private javax.swing.JPanel pn_OrdersInfo;
     private javax.swing.JPanel pn_atas;
     private javax.swing.JPanel pn_dashboard;
     private javax.swing.JPanel pn_kanan;
     private javax.swing.JPanel pn_kiri;
-    private javax.swing.JPanel pn_lineclient;
+    private javax.swing.JPanel pn_lineMembership;
     private javax.swing.JPanel pn_linedashboard;
-    private javax.swing.JPanel pn_linefinance;
     private javax.swing.JPanel pn_lineorders;
+    private javax.swing.JPanel pn_lineordersinfo;
     private javax.swing.JPanel pn_utama;
     // End of variables declaration//GEN-END:variables
 }

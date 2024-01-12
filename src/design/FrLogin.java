@@ -113,6 +113,11 @@ public class FrLogin extends javax.swing.JFrame {
         txtPass.setBackground(new java.awt.Color(255, 255, 255));
         txtPass.setForeground(new java.awt.Color(153, 153, 153));
         txtPass.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
+        txtPass.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtPassActionPerformed(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
@@ -188,7 +193,7 @@ public class FrLogin extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 0, 330, 360));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 0, 350, 360));
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -214,11 +219,7 @@ public class FrLogin extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void closewithiconMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_closewithiconMouseClicked
-        dispose();
-    }//GEN-LAST:event_closewithiconMouseClicked
-
-    private void btLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btLoginActionPerformed
+    private void login() {
         String username = txtUsername.getText();
         String password = new String(txtPass.getPassword());
 
@@ -234,6 +235,14 @@ public class FrLogin extends javax.swing.JFrame {
         } else {
             showMessageDialog(null, "Invalid username or password");
         }
+    }
+    
+    private void closewithiconMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_closewithiconMouseClicked
+        dispose();
+    }//GEN-LAST:event_closewithiconMouseClicked
+
+    private void btLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btLoginActionPerformed
+        login();
     }//GEN-LAST:event_btLoginActionPerformed
 
     private void txtUsernameFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtUsernameFocusGained
@@ -265,6 +274,10 @@ public class FrLogin extends javax.swing.JFrame {
         new FrRegister().show();
             this.dispose();
     }//GEN-LAST:event_jLabel3MouseClicked
+
+    private void txtPassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPassActionPerformed
+        login();
+    }//GEN-LAST:event_txtPassActionPerformed
 
     /**
      * @param args the command line arguments

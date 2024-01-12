@@ -12,7 +12,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Armandho
  */
-public class Helper {
+public class HelperData {
 
     public static void fillTable(JTable tb, ResultSet rs) {
         try {
