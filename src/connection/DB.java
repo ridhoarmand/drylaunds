@@ -17,11 +17,14 @@ import java.sql.SQLException;
  * @author Armandho
  */
 public class DB {
-    static Dotenv dotenv = new Dotenv(".env");
-    static String dbUrl = dotenv.get("DB_URL");
-    static String dbUser = dotenv.get("DB_USER");
-    static String dbPassword = dotenv.get("DB_PASSWORD");
+//    static Dotenv dotenv = new Dotenv(".env");
+//    static String dbUrl = dotenv.get("DB_URL");
+//    static String dbUser = dotenv.get("DB_USER");
+//    static String dbPassword = dotenv.get("DB_PASSWORD");
 
+    static String dbUrl = "jdbc:mysql://localhost:3306/dblaundry";
+    static String dbUser = "root";
+    static String dbPassword = "armansyah";
     private static Connection getConnection() throws SQLException {
 
         Connection cn = null;

@@ -4,7 +4,11 @@
  */
 package design;
 
+import design.view.MasterDashboard;
+import design.view.MasterOrders;
+
 import java.awt.Color;
+import java.awt.event.MouseEvent;
 
 /**
  *
@@ -163,6 +167,9 @@ public class FrMenu extends javax.swing.JFrame {
         btCllient.setForeground(new java.awt.Color(255, 255, 255));
         btCllient.setText("Clients");
         btCllient.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btCllientMouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 btCllientMouseEntered(evt);
             }
@@ -222,6 +229,9 @@ public class FrMenu extends javax.swing.JFrame {
         btOrders.setForeground(new java.awt.Color(255, 255, 255));
         btOrders.setText("Orders");
         btOrders.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btOrdersMouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 btOrdersMouseEntered(evt);
             }
@@ -367,18 +377,6 @@ public class FrMenu extends javax.swing.JFrame {
         pn_kanan.add(pn_atas, java.awt.BorderLayout.PAGE_START);
 
         pn_utama.setBackground(new java.awt.Color(255, 255, 255));
-
-        javax.swing.GroupLayout pn_utamaLayout = new javax.swing.GroupLayout(pn_utama);
-        pn_utama.setLayout(pn_utamaLayout);
-        pn_utamaLayout.setHorizontalGroup(
-            pn_utamaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1116, Short.MAX_VALUE)
-        );
-        pn_utamaLayout.setVerticalGroup(
-            pn_utamaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 673, Short.MAX_VALUE)
-        );
-
         pn_kanan.add(pn_utama, java.awt.BorderLayout.CENTER);
 
         getContentPane().add(pn_kanan, java.awt.BorderLayout.CENTER);
@@ -386,6 +384,15 @@ public class FrMenu extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    // show dashboard di panel utama
+    private void showDashboard() {
+//        Dashboard dashboard = new Dashboard();
+//        pn_utama.removeAll();
+//        pn_utama.add(dashboard);
+//        pn_utama.repaint();
+//        pn_utama.revalidate();
+    }
 
     private void btdashboardMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btdashboardMouseEntered
         // Untuk mengubah warna pn_dashboard menjadi orange
@@ -397,8 +404,7 @@ public class FrMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_btdashboardMouseEntered
 
     private void pn_dashboardMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pn_dashboardMouseEntered
-        
-        
+        showDashboard();
     }//GEN-LAST:event_pn_dashboardMouseEntered
 
     private void btdashboardMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btdashboardMouseExited
@@ -470,9 +476,33 @@ public class FrMenu extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_pn_FinanceMouseEntered
 
-    private void btdashboardMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btdashboardMouseClicked
-        
+    private void btdashboardMouseClicked(MouseEvent evt) {//GEN-FIRST:event_btdashboardMouseClicked
+        pn_utama.setVisible(true);
+        pn_utama.removeAll();
+        pn_utama.add(new MasterDashboard());
+        pn_utama.setBackground(Color.white);
+        pn_utama.repaint();
+        pn_utama.revalidate();
+
     }//GEN-LAST:event_btdashboardMouseClicked
+
+    private void btCllientMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btCllientMouseClicked
+        pn_utama.setVisible(true);
+        pn_utama.removeAll();
+        pn_utama.add(new MasterDashboard());
+        pn_utama.setBackground(Color.white);
+        pn_utama.repaint();
+        pn_utama.revalidate();
+    }//GEN-LAST:event_btCllientMouseClicked
+
+    private void btOrdersMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btOrdersMouseClicked
+        pn_utama.setVisible(true);
+        pn_utama.removeAll();
+        pn_utama.add(new MasterOrders());
+        pn_utama.setBackground(Color.white);
+        pn_utama.repaint();
+        pn_utama.revalidate();
+    }//GEN-LAST:event_btOrdersMouseClicked
 
     /**
      * @param args the command line arguments

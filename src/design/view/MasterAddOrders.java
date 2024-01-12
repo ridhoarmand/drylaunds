@@ -4,6 +4,8 @@
  */
 package design.view;
 
+import java.util.Objects;
+
 /**
  *
  * @author novar
@@ -375,7 +377,7 @@ public class MasterAddOrders extends javax.swing.JPanel {
                         .addGap(73, 73, 73)
                         .addComponent(custom_ButtonRounded1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(82, Short.MAX_VALUE))
+                .addContainerGap(40, Short.MAX_VALUE))
         );
 
         jPanel1.add(pn_utama, "card2");
@@ -388,7 +390,7 @@ public class MasterAddOrders extends javax.swing.JPanel {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 619, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 

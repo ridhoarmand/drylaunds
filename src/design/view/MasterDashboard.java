@@ -4,6 +4,7 @@
  */
 package design.view;
 
+
 /**
  *
  * @author novar
@@ -27,29 +28,29 @@ public class MasterDashboard extends javax.swing.JPanel {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jPanel2 = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tblData = new Palette.Custom_JTabel();
         cardAnggota = new Palette.Custom_JPanelRounded();
         lb_orders = new javax.swing.JLabel();
         lbJumlahOrders = new javax.swing.JLabel();
-        cardAnggota2 = new Palette.Custom_JPanelRounded();
-        lb_anggota2 = new javax.swing.JLabel();
-        lbJumlahPeminjaman = new javax.swing.JLabel();
         cardAnggota3 = new Palette.Custom_JPanelRounded();
         lb_anggota3 = new javax.swing.JLabel();
         lbJumlahPengembalian = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        tblData = new Palette.Custom_JTabel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
+        cardAnggota2 = new Palette.Custom_JPanelRounded();
+        lb_anggota2 = new javax.swing.JLabel();
+        lbJumlahPeminjaman = new javax.swing.JLabel();
         cardAnggota1 = new Palette.Custom_JPanelRounded();
         lb_anggota1 = new javax.swing.JLabel();
         lbJumlahBuku = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
 
-        jPanel1.setLayout(new java.awt.CardLayout());
+        jPanel1.setBackground(new java.awt.Color(204, 204, 204));
 
-        jPanel2.setBackground(new java.awt.Color(215, 212, 212));
-        jPanel2.setPreferredSize(new java.awt.Dimension(1133, 690));
+        tblData.setBackground(new java.awt.Color(255, 255, 255));
+        tblData.setForeground(new java.awt.Color(255, 255, 255));
+        tblData.setSelectionBackground(new java.awt.Color(0, 102, 255));
+        jScrollPane1.setViewportView(tblData);
 
         cardAnggota.setBackground(new java.awt.Color(255, 255, 255));
         cardAnggota.setRoundBottomLeft(30);
@@ -59,7 +60,7 @@ public class MasterDashboard extends javax.swing.JPanel {
 
         lb_orders.setFont(new java.awt.Font("Poppins", 1, 12)); // NOI18N
         lb_orders.setForeground(new java.awt.Color(51, 153, 0));
-        lb_orders.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/icons8_purchase_order_30px_2.png"))); // NOI18N
+        lb_orders.setIcon(new javax.swing.ImageIcon(getClass().getResource("/design/assets/icons8_purchase_order_30px.png"))); // NOI18N
         lb_orders.setText("ORDERS");
 
         lbJumlahOrders.setFont(new java.awt.Font("SansSerif", 1, 24)); // NOI18N
@@ -84,44 +85,7 @@ public class MasterDashboard extends javax.swing.JPanel {
                 .addComponent(lb_orders)
                 .addGap(20, 20, 20)
                 .addComponent(lbJumlahOrders)
-                .addContainerGap(37, Short.MAX_VALUE))
-        );
-
-        cardAnggota2.setBackground(new java.awt.Color(255, 255, 255));
-        cardAnggota2.setPreferredSize(new java.awt.Dimension(217, 123));
-        cardAnggota2.setRoundBottomLeft(30);
-        cardAnggota2.setRoundBottomRight(30);
-        cardAnggota2.setRoundTopLeft(30);
-        cardAnggota2.setRoundTopRight(30);
-
-        lb_anggota2.setFont(new java.awt.Font("Poppins", 1, 12)); // NOI18N
-        lb_anggota2.setForeground(new java.awt.Color(0, 204, 204));
-        lb_anggota2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/icons8_bullish_filled_30px.png"))); // NOI18N
-        lb_anggota2.setText("PROFIT");
-
-        lbJumlahPeminjaman.setFont(new java.awt.Font("Poppins", 1, 24)); // NOI18N
-        lbJumlahPeminjaman.setForeground(new java.awt.Color(0, 0, 0));
-        lbJumlahPeminjaman.setText("999");
-
-        javax.swing.GroupLayout cardAnggota2Layout = new javax.swing.GroupLayout(cardAnggota2);
-        cardAnggota2.setLayout(cardAnggota2Layout);
-        cardAnggota2Layout.setHorizontalGroup(
-            cardAnggota2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(cardAnggota2Layout.createSequentialGroup()
-                .addGap(17, 17, 17)
-                .addGroup(cardAnggota2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lbJumlahPeminjaman)
-                    .addComponent(lb_anggota2))
-                .addGap(140, 140, 140))
-        );
-        cardAnggota2Layout.setVerticalGroup(
-            cardAnggota2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(cardAnggota2Layout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addComponent(lb_anggota2)
-                .addGap(20, 20, 20)
-                .addComponent(lbJumlahPeminjaman)
-                .addGap(20, 20, 20))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         cardAnggota3.setBackground(new java.awt.Color(255, 255, 255));
@@ -133,7 +97,7 @@ public class MasterDashboard extends javax.swing.JPanel {
 
         lb_anggota3.setFont(new java.awt.Font("Poppins", 1, 12)); // NOI18N
         lb_anggota3.setForeground(new java.awt.Color(255, 153, 0));
-        lb_anggota3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/icons8_cost_30px.png"))); // NOI18N
+        lb_anggota3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/design/assets/icons8_cost_30px.png"))); // NOI18N
         lb_anggota3.setText("COST");
 
         lbJumlahPengembalian.setFont(new java.awt.Font("Poppins", 1, 24)); // NOI18N
@@ -161,20 +125,42 @@ public class MasterDashboard extends javax.swing.JPanel {
                 .addGap(20, 20, 20))
         );
 
-        tblData.setBackground(new java.awt.Color(255, 255, 255));
-        tblData.setForeground(new java.awt.Color(255, 255, 255));
-        tblData.setSelectionBackground(new java.awt.Color(0, 102, 255));
-        jScrollPane1.setViewportView(tblData);
+        cardAnggota2.setBackground(new java.awt.Color(255, 255, 255));
+        cardAnggota2.setPreferredSize(new java.awt.Dimension(217, 123));
+        cardAnggota2.setRoundBottomLeft(30);
+        cardAnggota2.setRoundBottomRight(30);
+        cardAnggota2.setRoundTopLeft(30);
+        cardAnggota2.setRoundTopRight(30);
 
-        jLabel1.setFont(new java.awt.Font("Poppins", 1, 18)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel1.setText("List Of Customers");
+        lb_anggota2.setFont(new java.awt.Font("Poppins", 1, 12)); // NOI18N
+        lb_anggota2.setForeground(new java.awt.Color(0, 204, 204));
+        lb_anggota2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/design/assets/icons8_bullish_filled_30px.png"))); // NOI18N
+        lb_anggota2.setText("PROFIT");
 
-        jLabel2.setFont(new java.awt.Font("Poppins", 1, 14)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(102, 102, 102));
-        jLabel2.setText("Master Data > Dashboard");
+        lbJumlahPeminjaman.setFont(new java.awt.Font("Poppins", 1, 24)); // NOI18N
+        lbJumlahPeminjaman.setForeground(new java.awt.Color(0, 0, 0));
+        lbJumlahPeminjaman.setText("999");
 
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/icons8_compass_30px.png"))); // NOI18N
+        javax.swing.GroupLayout cardAnggota2Layout = new javax.swing.GroupLayout(cardAnggota2);
+        cardAnggota2.setLayout(cardAnggota2Layout);
+        cardAnggota2Layout.setHorizontalGroup(
+            cardAnggota2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(cardAnggota2Layout.createSequentialGroup()
+                .addGap(17, 17, 17)
+                .addGroup(cardAnggota2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lbJumlahPeminjaman)
+                    .addComponent(lb_anggota2))
+                .addGap(140, 140, 140))
+        );
+        cardAnggota2Layout.setVerticalGroup(
+            cardAnggota2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(cardAnggota2Layout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addComponent(lb_anggota2)
+                .addGap(20, 20, 20)
+                .addComponent(lbJumlahPeminjaman)
+                .addGap(20, 20, 20))
+        );
 
         cardAnggota1.setBackground(new java.awt.Color(255, 255, 255));
         cardAnggota1.setRoundBottomLeft(30);
@@ -184,7 +170,7 @@ public class MasterDashboard extends javax.swing.JPanel {
 
         lb_anggota1.setFont(new java.awt.Font("Poppins", 1, 12)); // NOI18N
         lb_anggota1.setForeground(new java.awt.Color(204, 0, 204));
-        lb_anggota1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/icons8_sales_performance_filled_30px.png"))); // NOI18N
+        lb_anggota1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/design/assets/icons8_sales_performance_filled_30px.png"))); // NOI18N
         lb_anggota1.setText("REVENUE");
 
         lbJumlahBuku.setFont(new java.awt.Font("Poppins", 1, 24)); // NOI18N
@@ -212,79 +198,75 @@ public class MasterDashboard extends javax.swing.JPanel {
                 .addGap(20, 20, 20))
         );
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1113, Short.MAX_VALUE)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        jLabel2.setFont(new java.awt.Font("Poppins", 1, 14)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(102, 102, 102));
+        jLabel2.setText("Master Data > Dashboard");
+
+        jLabel1.setFont(new java.awt.Font("Poppins", 1, 18)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/design/assets/icons8_compass_30px.png"))); // NOI18N
+        jLabel1.setText("List Of Customers");
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1069, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                        .addGap(20, 20, 20)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
+                            .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(cardAnggota, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(60, 60, 60)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel2Layout.createSequentialGroup()
-                                        .addGap(583, 583, 583)
-                                        .addComponent(jLabel3)
-                                        .addGap(18, 18, 18)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addGap(601, 601, 601)
                                         .addComponent(jLabel2))
-                                    .addGroup(jPanel2Layout.createSequentialGroup()
-                                        .addGap(0, 0, 0)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addComponent(cardAnggota1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(60, 60, 60)
                                         .addComponent(cardAnggota2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(60, 60, 60)
-                                        .addComponent(cardAnggota3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                        .addGap(15, 15, 15)))
-                .addGap(0, 0, Short.MAX_VALUE))
+                                        .addComponent(cardAnggota3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
+                .addContainerGap(19, Short.MAX_VALUE))
         );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3))
-                .addGap(74, 74, 74)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(cardAnggota3, javax.swing.GroupLayout.DEFAULT_SIZE, 139, Short.MAX_VALUE)
-                        .addComponent(cardAnggota, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(cardAnggota1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(cardAnggota2, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)))
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(18, 18, 18)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(cardAnggota3, javax.swing.GroupLayout.DEFAULT_SIZE, 139, Short.MAX_VALUE)
+                    .addComponent(cardAnggota2, javax.swing.GroupLayout.DEFAULT_SIZE, 139, Short.MAX_VALUE)
+                    .addComponent(cardAnggota, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(cardAnggota1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel1)
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 542, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(20, 20, 20))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(39, Short.MAX_VALUE))
         );
-
-        jPanel1.add(jPanel2, "card2");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1135, Short.MAX_VALUE)
+            .addGap(0, 1114, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 1135, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 813, Short.MAX_VALUE)
+            .addGap(0, 694, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 813, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(0, 0, Short.MAX_VALUE)))
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -297,9 +279,7 @@ public class MasterDashboard extends javax.swing.JPanel {
     private Palette.Custom_JPanelRounded cardAnggota3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lbJumlahBuku;
     private javax.swing.JLabel lbJumlahOrders;

@@ -4,6 +4,10 @@
  */
 package design.view;
 
+
+import static connection.DB.eQuery;
+import static helper.Helper.fillTable;
+
 /**
  *
  * @author novar
@@ -15,6 +19,7 @@ public class MasterOrders extends javax.swing.JPanel {
      */
     public MasterOrders() {
         initComponents();
+        refreshTable();
     }
 
     /**
@@ -116,13 +121,13 @@ public class MasterOrders extends javax.swing.JPanel {
         jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setText("Details Orders");
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/icons8_edit_property_30px.png"))); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/design/assets/icons8_edit_property_30px.png"))); // NOI18N
 
         jLabel3.setFont(new java.awt.Font("Poppins", 1, 18)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(0, 0, 0));
         jLabel3.setText("Orders Status");
 
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/icons8_report_card_30px.png"))); // NOI18N
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/design/assets/icons8_report_card_30px.png"))); // NOI18N
 
         custom_ButtonRounded3.setBackground(new java.awt.Color(0, 102, 255));
         custom_ButtonRounded3.setText("Change Status");
@@ -135,6 +140,10 @@ public class MasterOrders extends javax.swing.JPanel {
         });
 
         custom_JTextFieldRounded3.setBackground(new java.awt.Color(255, 153, 51));
+        custom_JTextFieldRounded3.setForeground(new java.awt.Color(255, 255, 255));
+        custom_JTextFieldRounded3.setText("Search");
+        custom_JTextFieldRounded3.setToolTipText("");
+        custom_JTextFieldRounded3.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         custom_JTextFieldRounded3.setOpaque(true);
         custom_JTextFieldRounded3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -154,22 +163,24 @@ public class MasterOrders extends javax.swing.JPanel {
                         .addGap(0, 0, 0)
                         .addComponent(jLabel2)
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pn_utamaLayout.createSequentialGroup()
+                    .addGroup(pn_utamaLayout.createSequentialGroup()
                         .addGroup(pn_utamaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 1441, Short.MAX_VALUE)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(pn_utamaLayout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(custom_JTextFieldRounded3, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(35, 35, 35)
+                                .addComponent(custom_ButtonRounded3, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(pn_utamaLayout.createSequentialGroup()
                                 .addComponent(jLabel3)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jLabel4)
-                                .addGap(0, 0, Short.MAX_VALUE))
+                                .addGap(0, 926, Short.MAX_VALUE))
                             .addGroup(pn_utamaLayout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(custom_JTextFieldRounded3, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(custom_ButtonRounded3, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)))
-                        .addGap(36, 36, 36))))
+                                .addGap(4, 4, 4)
+                                .addGroup(pn_utamaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING))))
+                        .addGap(14, 14, 14))))
         );
         pn_utamaLayout.setVerticalGroup(
             pn_utamaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -177,22 +188,20 @@ public class MasterOrders extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(pn_utamaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel4)
-                    .addGroup(pn_utamaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel3)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(jLabel3))
+                .addGap(18, 18, 18)
                 .addGroup(pn_utamaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(custom_ButtonRounded3, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(custom_JTextFieldRounded3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(51, 51, 51)
+                    .addComponent(custom_JTextFieldRounded3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(custom_ButtonRounded3, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(11, 11, 11)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(pn_utamaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel2)
-                    .addGroup(pn_utamaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel1)))
+                    .addComponent(jLabel1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(164, Short.MAX_VALUE))
+                .addContainerGap(23, Short.MAX_VALUE))
         );
 
         jPanel1.add(pn_utama, "card2");
@@ -205,10 +214,18 @@ public class MasterOrders extends javax.swing.JPanel {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 821, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 648, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void refreshTable() {
+        try {
+            String sql = "SELECT o.ID AS `ORDER ID`, ORDERER, DATE, STATUS, m.ID AS `MEMBER ID`, m.name AS `NAMA MEMBER`  FROM orders o LEFT JOIN members m ON o.member_id = m.id";
+            fillTable(custom_JTabel1, eQuery(sql));
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+    }
     private void custom_ButtonRounded3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_custom_ButtonRounded3ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_custom_ButtonRounded3ActionPerformed
