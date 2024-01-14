@@ -5,6 +5,8 @@
 package design;
 
 import function.SysLogin;
+
+import static design.FrMenu.setUserData;
 import static javax.swing.JOptionPane.showMessageDialog;
 
 
@@ -228,6 +230,7 @@ public class FrLogin extends javax.swing.JFrame {
 
         if (isLogin) {
             showMessageDialog(null, "Login successful");
+            setUserData(username);
             new FrMenu().show();
             this.dispose();
         } else {

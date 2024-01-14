@@ -11,6 +11,11 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import static connection.DB.eQuery;
+import static connection.DB.eUpdate;
+import static helper.HelperData.fillTable;
+import static javax.swing.JOptionPane.showMessageDialog;
+
+import design.FrMenu;
 
 /**
  *
@@ -18,29 +23,40 @@ import static connection.DB.eQuery;
  */
 public class MasterAddOrders extends javax.swing.JPanel {
 
-    /**
-     * Creates new form MasterOrders
-     */
+    private String orderID;
+
     public MasterAddOrders() {
         initComponents();
-        getPanelPayment();
         txtMemberId.grabFocus();
+        getDate();
         getNewID();
+        FrMenu menu = new FrMenu();
+        setTxtAdmin(menu.getUserId());
     }
 
     private void getNewID() {
-        txtOrderId.setText(HelperData.getNewCode("O", "id", "orders", 5));
+        this.orderID = HelperData.getNewCode("O", "id", "orders", 5);
+        txtOrderId.setText(this.orderID);
+        txtOrderIdPay.setText(this.orderID);
+        String paymentId = HelperData.getNewCode("P", "id", "payments", 5);
+        txtIdPay.setText(paymentId);
     }
 
-    private void getPanelPayment() {
-        pn_payment.removeAll();
-        pn_payment.add(new Payment());
-        pn_payment.repaint();
-        pn_payment.revalidate();
+    private void getDate() {
+        txtDate.setDate(new java.util.Date());
+        txtDatePay.setDate(new java.util.Date());
     }
 
-    public void setTxtMemberId(String txtMemberId) {
-        this.txtMemberId.setText(txtMemberId);
+    public void setTxtAdmin(String txtAdmin) {
+        this.txtAdmin.setText(txtAdmin);
+    }
+
+    private void clearDetail() {
+        txtServiceId.setText("");
+        txtNameService.setText("");
+        txtQuantity.setText("");
+        txtPrice.setText("");
+        txtSubtotal.setText("");
     }
 
     /**
@@ -82,6 +98,22 @@ public class MasterAddOrders extends javax.swing.JPanel {
         tabel = new Palette.Custom_JTabel();
         txtOrderId = new Palette.Custom_JTextFieldRounded();
         pn_payment = new javax.swing.JPanel();
+        jPanel2 = new javax.swing.JPanel();
+        jPanel3 = new javax.swing.JPanel();
+        txtIdPay = new Palette.Custom_JTextFieldRounded();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        txtOrderIdPay = new Palette.Custom_JTextFieldRounded();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        txtBillPay = new Palette.Custom_JTextFieldRounded();
+        jLabel12 = new javax.swing.JLabel();
+        txtPay = new Palette.Custom_JTextFieldRounded();
+        jLabel16 = new javax.swing.JLabel();
+        txtChange = new Palette.Custom_JTextFieldRounded();
+        jLabel19 = new javax.swing.JLabel();
+        custom_ButtonRounded1 = new Palette.Custom_ButtonRounded();
+        txtDatePay = new com.toedter.calendar.JDateChooser();
         txtNameService = new Palette.Custom_JTextFieldRounded();
         txtDate = new com.toedter.calendar.JDateChooser();
 
@@ -114,15 +146,11 @@ public class MasterAddOrders extends javax.swing.JPanel {
         jLabel3.setText("Add New Order");
 
         txtAdmin.setBackground(new java.awt.Color(0, 102, 255));
+        txtAdmin.setEnabled(false);
         txtAdmin.setOpaque(true);
 
         txtMemberId.setBackground(new java.awt.Color(0, 102, 255));
         txtMemberId.setOpaque(true);
-        txtMemberId.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                txtMemberIdMouseExited(evt);
-            }
-        });
         txtMemberId.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txtMemberIdKeyPressed(evt);
@@ -163,6 +191,11 @@ public class MasterAddOrders extends javax.swing.JPanel {
 
         txtServiceId.setBackground(new java.awt.Color(0, 102, 255));
         txtServiceId.setOpaque(true);
+        txtServiceId.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtServiceIdKeyPressed(evt);
+            }
+        });
 
         jLabel13.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
         jLabel13.setForeground(new java.awt.Color(0, 0, 0));
@@ -174,6 +207,11 @@ public class MasterAddOrders extends javax.swing.JPanel {
 
         txtQuantity.setBackground(new java.awt.Color(0, 102, 255));
         txtQuantity.setOpaque(true);
+        txtQuantity.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtQuantityKeyPressed(evt);
+            }
+        });
 
         jLabel15.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
         jLabel15.setForeground(new java.awt.Color(0, 0, 0));
@@ -193,6 +231,11 @@ public class MasterAddOrders extends javax.swing.JPanel {
         addDetail.setText("Add");
         addDetail.setFillOriginal(new java.awt.Color(255, 153, 0));
         addDetail.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
+        addDetail.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addDetailActionPerformed(evt);
+            }
+        });
 
         jLabel18.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
         jLabel18.setForeground(new java.awt.Color(0, 0, 0));
@@ -200,30 +243,30 @@ public class MasterAddOrders extends javax.swing.JPanel {
 
         tabel.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+
             }
         ));
         jScrollPane1.setViewportView(tabel);
@@ -234,6 +277,150 @@ public class MasterAddOrders extends javax.swing.JPanel {
 
         pn_payment.setBackground(new java.awt.Color(255, 255, 255));
         pn_payment.setLayout(new java.awt.BorderLayout());
+
+        jPanel2.setBackground(new java.awt.Color(51, 102, 255));
+        jPanel2.setLayout(new java.awt.CardLayout());
+
+        jPanel3.setBackground(new java.awt.Color(0, 102, 255));
+        jPanel3.setPreferredSize(new java.awt.Dimension(601, 438));
+
+        txtIdPay.setEnabled(false);
+
+        jLabel2.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel2.setFont(new java.awt.Font("Poppins", 1, 14)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setText("Detail Payment");
+
+        jLabel4.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel4.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel4.setText("ID");
+
+        txtOrderIdPay.setEnabled(false);
+
+        jLabel9.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel9.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel9.setText("Order ID");
+
+        jLabel10.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel10.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
+        jLabel10.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel10.setText("Date");
+
+        txtBillPay.setEnabled(false);
+
+        jLabel12.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel12.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
+        jLabel12.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel12.setText("Bill");
+
+        txtPay.setForeground(new java.awt.Color(255, 255, 255));
+        txtPay.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtPayKeyPressed(evt);
+            }
+        });
+
+        jLabel16.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel16.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
+        jLabel16.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel16.setText("Pay");
+
+        txtChange.setEnabled(false);
+
+        jLabel19.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel19.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
+        jLabel19.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel19.setText("Change");
+
+        custom_ButtonRounded1.setBackground(new java.awt.Color(255, 153, 0));
+        custom_ButtonRounded1.setText("Pay");
+        custom_ButtonRounded1.setFillOriginal(new java.awt.Color(255, 153, 0));
+        custom_ButtonRounded1.setFont(new java.awt.Font("Poppins", 0, 12)); // NOI18N
+        custom_ButtonRounded1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                custom_ButtonRounded1ActionPerformed(evt);
+            }
+        });
+
+        txtDatePay.setDateFormatString("yyyy/MM/dd");
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(36, 36, 36)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(jLabel16, javax.swing.GroupLayout.DEFAULT_SIZE, 109, Short.MAX_VALUE)
+                                    .addComponent(jLabel12, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jLabel19, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtBillPay, javax.swing.GroupLayout.DEFAULT_SIZE, 177, Short.MAX_VALUE)
+                                    .addComponent(txtPay, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(txtChange, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(txtDatePay, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addGap(2, 2, 2)
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, 107, Short.MAX_VALUE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtOrderIdPay, javax.swing.GroupLayout.DEFAULT_SIZE, 177, Short.MAX_VALUE)
+                                    .addComponent(txtIdPay, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(152, 152, 152)
+                        .addComponent(custom_ButtonRounded1, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(15, 15, 15)
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 326, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(30, Short.MAX_VALUE))
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(19, 19, 19)
+                .addComponent(jLabel2)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtIdPay, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel4))
+                .addGap(10, 10, 10)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel9)
+                    .addComponent(txtOrderIdPay, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(14, 14, 14)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel10)
+                    .addComponent(txtDatePay, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtBillPay, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel12))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtPay, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel16))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtChange, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel19))
+                .addGap(39, 39, 39)
+                .addComponent(custom_ButtonRounded1, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(259, Short.MAX_VALUE))
+        );
+
+        jPanel2.add(jPanel3, "card2");
+
+        pn_payment.add(jPanel2, java.awt.BorderLayout.CENTER);
 
         txtNameService.setBackground(new java.awt.Color(0, 102, 255));
         txtNameService.setOpaque(true);
@@ -312,8 +499,8 @@ public class MasterAddOrders extends javax.swing.JPanel {
                         .addGap(6, 6, 6)
                         .addComponent(jLabel11)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(pn_payment, javax.swing.GroupLayout.PREFERRED_SIZE, 438, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(12, Short.MAX_VALUE))
+                .addComponent(pn_payment, javax.swing.GroupLayout.PREFERRED_SIZE, 371, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         pn_utamaLayout.setVerticalGroup(
             pn_utamaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -364,8 +551,9 @@ public class MasterAddOrders extends javax.swing.JPanel {
                         .addGroup(pn_utamaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(addDetail, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtNameService, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 306, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 298, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(8, 8, 8)))
                 .addGap(19, 19, 19))
         );
 
@@ -375,7 +563,7 @@ public class MasterAddOrders extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 1043, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -383,23 +571,87 @@ public class MasterAddOrders extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtMemberIdMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtMemberIdMouseExited
-        // jika id member tidak kosong, set nama member
+    private void txtServiceIdKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtServiceIdKeyPressed
+        if (evt.getKeyCode() == 9 || evt.getKeyCode() == 10) {
+            if (txtServiceId.getText().equals("")) {
+                openSearchService();
+            } else {
+                txtQuantity.grabFocus();
+            }
+        }
+    }//GEN-LAST:event_txtServiceIdKeyPressed
 
+    private void txtQuantityKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtQuantityKeyPressed
+        if (evt.getKeyCode() == 9 || evt.getKeyCode() == 10) {
+            // IF quantity is number
+            if (txtQuantity.getText().matches("[0-9]+")) {
+                int subtotal = Integer.parseInt(txtQuantity.getText()) * Integer.parseInt(txtPrice.getText());
+                txtSubtotal.setText(String.valueOf(subtotal));
+            } else {
+                showMessageDialog(null, "Masukan angka Dalam Bentuk Angka");
+            }
+        }
+    }//GEN-LAST:event_txtQuantityKeyPressed
 
-    }//GEN-LAST:event_txtMemberIdMouseExited
+    private void addDetailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addDetailActionPerformed
+        if (txtMemberId.getText().equals("") || txtMemberName.getText().equals("") || txtOrderer.getText().equals("")
+                || txtServiceId.getText().equals("") || txtNameService.getText().equals("") || txtQuantity.getText().equals("")
+                || txtPrice.getText().equals("") || txtSubtotal.getText().equals("")) {
+            showMessageDialog(null, "Semua inputan harus diisi");
+        } else {
+            try {
+                eUpdate("CALL spOrders(?,?,?,?,?,?,?,?,?)", txtOrderId.getText(), txtAdmin.getText(), txtMemberId.getText(), txtOrderer.getText(), txtDate.getDate(), txtServiceId.getText(), txtQuantity.getText(), txtPrice.getText(), txtSubtotal.getText());
+                ResultSet rs = eQuery("SELECT o.ID, SERVICE_ID, NAME, QTY, o.PRICE, SUBTOTAL FROM order_details o LEFT JOIN services s ON o.service_id = s.id WHERE o.order_id = ?", txtOrderId.getText());
+                fillTable(tabel, rs);
+                ResultSet rsp = eQuery("SELECT ROUND(SUM(SUBTOTAL)) AS TOTAL FROM order_details WHERE order_id = ?", orderID);
+                rsp.next();
+                txtBillPay.setText(rsp.getString("TOTAL"));
+                clearDetail();
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+        }
+
+    }//GEN-LAST:event_addDetailActionPerformed
+
+    private void custom_ButtonRounded1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_custom_ButtonRounded1ActionPerformed
+        // insert to payments
+        if (txtBillPay.getText().equals("") || txtPay.getText().equals("") || txtChange.getText().equals("")) {
+            showMessageDialog(null, "Semua inputan harus diisi");
+        } else {
+            try {
+                eUpdate("INSERT INTO payments VALUES(?,?,?,?,?,?)", txtIdPay.getText(), txtOrderIdPay.getText(), txtDatePay.getDate(), txtBillPay.getText(), txtPay.getText(), txtChange.getText());
+                showMessageDialog(null, "Success");
+                FrMenu menu = new FrMenu();
+                menu.clearPnUtama();
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+        }
+    }//GEN-LAST:event_custom_ButtonRounded1ActionPerformed
+
+    private void txtPayKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPayKeyPressed
+        if (evt.getKeyCode() == 9 || evt.getKeyCode() == 10) {
+            if (txtPay.getText().equals("")) {
+                showMessageDialog(null, "Masukan jumlah pembayaran");
+            } else {
+                int change = Integer.parseInt(txtPay.getText()) - Integer.parseInt(txtBillPay.getText());
+                txtChange.setText(String.valueOf(change));
+            }
+        }
+    }//GEN-LAST:event_txtPayKeyPressed
 
     private void txtMemberIdKeyPressed(java.awt.event.KeyEvent evt) {
         if (evt.getKeyCode() == 9 || evt.getKeyCode() == 10) {
             if (txtMemberId.getText().equals("")) {
-                openSearchTool();
+                openSearchMember();
             } else {
                 txtDate.grabFocus();
             }
         }
     }
 
-    private void openSearchTool() {
+    private void openSearchMember() {
         SearchTool search = new SearchTool();
         search.setSql("SELECT * FROM members", "name");
         search.setColumn(0);
@@ -428,36 +680,83 @@ public class MasterAddOrders extends javax.swing.JPanel {
         });
     }
 
+    private void openSearchService() {
+        SearchTool search = new SearchTool();
+        search.setSql("SELECT * FROM services", "name");
+        search.setColumn(0);
+        search.setTitle("Search Service");
+        search.setVisible(true);
+        search.addWindowListener(new java.awt.event.WindowAdapter() {
+            @Override
+            public void windowClosed(java.awt.event.WindowEvent windowEvent) {
+                String data = search.getData();
+                if (data != null) {
+                    txtServiceId.setText(data);
+                    String sql = "SELECT name, ROUND(price) AS price FROM services WHERE id = ?";
+                    try {
+                        ResultSet rs = eQuery(sql, txtServiceId.getText());
+                        if (rs.next()) {
+                            txtNameService.setText(rs.getString("name"));
+                            txtPrice.setText(rs.getString("price"));
+                        } else {
+                            txtNameService.setText("");
+                            txtPrice.setText("0");
+                        }
+                    } catch (SQLException e) {
+                        System.out.println(e.getMessage());
+                    }
+
+                }
+            }
+        });
+    }
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private Palette.Custom_ButtonRounded addDetail;
+    private Palette.Custom_ButtonRounded custom_ButtonRounded1;
     private Palette.Custom_JTabel custom_JTabel2;
     private Palette.Custom_JTextFieldRounded custom_JTextFieldRounded7;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JPanel pn_payment;
     private javax.swing.JPanel pn_utama;
     private Palette.Custom_JTabel tabel;
     private Palette.Custom_JTextFieldRounded txtAdmin;
+    private Palette.Custom_JTextFieldRounded txtBillPay;
+    private Palette.Custom_JTextFieldRounded txtChange;
     private com.toedter.calendar.JDateChooser txtDate;
+    private com.toedter.calendar.JDateChooser txtDatePay;
+    private Palette.Custom_JTextFieldRounded txtIdPay;
     private Palette.Custom_JTextFieldRounded txtMemberId;
     private Palette.Custom_JTextFieldRounded txtMemberName;
     private Palette.Custom_JTextFieldRounded txtNameService;
     private Palette.Custom_JTextFieldRounded txtOrderId;
+    private Palette.Custom_JTextFieldRounded txtOrderIdPay;
     private Palette.Custom_JTextFieldRounded txtOrderer;
+    private Palette.Custom_JTextFieldRounded txtPay;
     private Palette.Custom_JTextFieldRounded txtPrice;
     private Palette.Custom_JTextFieldRounded txtQuantity;
     private Palette.Custom_JTextFieldRounded txtServiceId;

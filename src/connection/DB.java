@@ -45,6 +45,7 @@ public class DB {
             for (int i = 0; i < params.length; i++) {
                 pst.setObject(i + 1, params[i]);
             }
+            System.out.println(pst);
             return pst.executeUpdate();
         } catch (SQLException e) {
             throw new SQLException("Error executing query: " + sql, e);
@@ -60,6 +61,7 @@ public class DB {
             for (int i = 0; i < params.length; i++) {
                 pst.setObject(i + 1, params[i]);
             }
+            System.out.println(pst);
             return pst.executeQuery();
         } catch (SQLException e) {
             throw new SQLException("Error executing query: " + sql, e);

@@ -7,6 +7,7 @@ package design.view;
 
 import static connection.DB.eQuery;
 import static helper.HelperData.fillTable;
+import javax.swing.ListSelectionModel;
 
 /**
  *
@@ -20,6 +21,11 @@ public class MasterOrders extends javax.swing.JPanel {
     public MasterOrders() {
         initComponents();
         refreshTable();
+        custom_JTabel1.setDefaultEditor(Object.class, null);
+        custom_JTabel1.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        custom_JTabel2.setDefaultEditor(Object.class, null);
+        custom_JTabel2.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        
     }
 
     /**
@@ -94,25 +100,30 @@ public class MasterOrders extends javax.swing.JPanel {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        custom_JTabel1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                custom_JTabel1MouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(custom_JTabel1);
 
         custom_JTabel3.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+
             }
         ));
         jScrollPane3.setViewportView(custom_JTabel3);
@@ -141,7 +152,6 @@ public class MasterOrders extends javax.swing.JPanel {
 
         custom_JTextFieldRounded3.setBackground(new java.awt.Color(255, 153, 51));
         custom_JTextFieldRounded3.setForeground(new java.awt.Color(255, 255, 255));
-        custom_JTextFieldRounded3.setText("Search");
         custom_JTextFieldRounded3.setToolTipText("");
         custom_JTextFieldRounded3.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         custom_JTextFieldRounded3.setOpaque(true);
@@ -226,6 +236,16 @@ public class MasterOrders extends javax.swing.JPanel {
             System.out.println(e.getMessage());
         }
     }
+    
+    private void refreshTableDetail(String id) {
+        try {
+            String sql = "SELECT o.ID, s.ID AS SERVICE_ID, NAME, QTY, o.PRICE, SUBTOTAL FROM order_details o LEFT JOIN services s ON o.service_id = s.id WHERE o.order_id = ?";
+            fillTable(custom_JTabel3, eQuery(sql, id));
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+    }
+    
     private void custom_ButtonRounded3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_custom_ButtonRounded3ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_custom_ButtonRounded3ActionPerformed
@@ -233,6 +253,12 @@ public class MasterOrders extends javax.swing.JPanel {
     private void custom_JTextFieldRounded3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_custom_JTextFieldRounded3ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_custom_JTextFieldRounded3ActionPerformed
+
+    private void custom_JTabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_custom_JTabel1MouseClicked
+        int row = custom_JTabel1.getSelectedRow();
+        String id = custom_JTabel1.getValueAt(row, 0).toString();
+        refreshTableDetail(id);
+    }//GEN-LAST:event_custom_JTabel1MouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

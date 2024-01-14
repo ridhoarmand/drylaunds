@@ -11,6 +11,10 @@ import design.view.MasterOrders;
 
 import java.awt.Color;
 import java.awt.event.MouseEvent;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+import static connection.DB.eQuery;
 
 /**
  *
@@ -21,20 +25,41 @@ public class FrMenu extends javax.swing.JFrame {
     /**
      * Creates new form MainMenu
      */
-
-    private static String id_user;
-    private static String nama_user;
+    private static String username;
+    private static String name;
+    private static String userId;
 
     public FrMenu() {
         initComponents();
+        lbName.setText("Welcome, " + name);
+    }
+    
+    public String getUserId() {
+        return userId;
     }
 
-    public static void setIdUser(String id_user) {
-        FrMenu.id_user = id_user;
+    public String getName() {
+        return name;
+    }
+    
+
+    static void setUserData(String username){
+        String sql = "SELECT * FROM users WHERE username = ?";
+        try {
+            ResultSet result = eQuery(sql, username);
+            result.next();
+            FrMenu.userId = result.getString("id");
+            FrMenu.username = result.getString("username");
+            FrMenu.name = result.getString("name");            
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
     }
 
-    public static void setNamaUser(String nama_user) {
-        FrMenu.nama_user = nama_user;
+    public void clearPnUtama() {
+        pn_utama.removeAll();
+        pn_utama.repaint();
+        pn_utama.revalidate();
     }
 
     /**
@@ -66,6 +91,7 @@ public class FrMenu extends javax.swing.JFrame {
         btMembership = new javax.swing.JLabel();
         pn_kanan = new javax.swing.JPanel();
         pn_atas = new javax.swing.JPanel();
+        lbName = new javax.swing.JLabel();
         pn_utama = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -344,18 +370,29 @@ public class FrMenu extends javax.swing.JFrame {
         pn_kanan.setBackground(new java.awt.Color(255, 255, 255));
         pn_kanan.setLayout(new java.awt.BorderLayout());
 
-        pn_atas.setBackground(new java.awt.Color(204, 204, 204));
+        pn_atas.setBackground(new java.awt.Color(255, 255, 255));
+        pn_atas.setForeground(new java.awt.Color(0, 0, 0));
+        pn_atas.setFont(new java.awt.Font("Segoe UI Variable", 1, 18)); // NOI18N
         pn_atas.setPreferredSize(new java.awt.Dimension(1116, 95));
+
+        lbName.setFont(new java.awt.Font("Segoe UI Semibold", 1, 24)); // NOI18N
+        lbName.setForeground(new java.awt.Color(0, 0, 0));
 
         javax.swing.GroupLayout pn_atasLayout = new javax.swing.GroupLayout(pn_atas);
         pn_atas.setLayout(pn_atasLayout);
         pn_atasLayout.setHorizontalGroup(
             pn_atasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1116, Short.MAX_VALUE)
+            .addGroup(pn_atasLayout.createSequentialGroup()
+                .addGap(38, 38, 38)
+                .addComponent(lbName)
+                .addContainerGap(1078, Short.MAX_VALUE))
         );
         pn_atasLayout.setVerticalGroup(
             pn_atasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 95, Short.MAX_VALUE)
+            .addGroup(pn_atasLayout.createSequentialGroup()
+                .addGap(38, 38, 38)
+                .addComponent(lbName)
+                .addContainerGap(57, Short.MAX_VALUE))
         );
 
         pn_kanan.add(pn_atas, java.awt.BorderLayout.PAGE_START);
@@ -426,8 +463,7 @@ public class FrMenu extends javax.swing.JFrame {
         pn_utama.setBackground(Color.white);
         pn_utama.repaint();
         pn_utama.revalidate();
-        
-        
+
     }//GEN-LAST:event_btOrdersInfoMouseClicked
 
     private void btMembershipMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btMembershipMouseEntered
@@ -509,6 +545,7 @@ public class FrMenu extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private static javax.swing.JLabel lbName;
     private javax.swing.JPanel pn_Membership;
     private javax.swing.JPanel pn_Orders;
     private javax.swing.JPanel pn_OrdersInfo;
